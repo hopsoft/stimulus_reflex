@@ -1,0 +1,42 @@
+{
+  "name": "stimulus_reflex",
+  "version": "3.4.0",
+  "description": "Build reactive applications with the Rails tooling you already know and love.",
+  "keywords": [
+    "ruby",
+    "rails",
+    "websockets",
+    "actioncable",
+    "turbolinks",
+    "reactive",
+    "cable",
+    "ujs",
+    "ssr",
+    "stimulus",
+    "reflex",
+    "stimulus_reflex",
+    "dom",
+    "morphdom"
+  ],
+  "repository": "https://github.com/hopsoft/stimulus_reflex",
+  "homepage": "https://docs.stimulusreflex.com/",
+  "bugs": "https://github.com/hopsoft/stimulus_reflex/issues",
+  "license": "MIT",
+  "author": "Nathan Hopkins <natehop@gmail.com>",
+  "source": "./index.js",
+  "main": "./index.js",
+  "scripts": {
+    "postinstall": "node ./scripts/post_install.js",
+    "prettier-standard:check": "yarn run prettier-standard --check *.js **/*.js",
+    "prettier-standard:format": "yarn run prettier-standard *.js **/*.js"
+  },
+  "dependencies": {
+    "@stimulus_reflex/core": "^3.4.0"
+  },
+  "devDependencies": {
+    "prettier-standard": "^16.4.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

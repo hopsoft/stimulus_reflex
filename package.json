@@ -1,57 +1,29 @@
 {
-  "name": "stimulus_reflex",
+  "name": "stimulus_reflex-repo",
   "version": "3.4.0",
+  "private": true,
   "description": "Build reactive applications with the Rails tooling you already know and love.",
-  "keywords": [
-    "ruby",
-    "rails",
-    "websockets",
-    "actioncable",
-    "turbolinks",
-    "reactive",
-    "cable",
-    "ujs",
-    "ssr",
-    "stimulus",
-    "reflex",
-    "stimulus_reflex",
-    "dom",
-    "morphdom"
-  ],
   "homepage": "https://docs.stimulusreflex.com/",
-  "bugs": {
-    "url": "https://github.com/hopsoft/stimulus_reflex/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com:hopsoft/stimulus_reflex.git"
-  },
+  "bugs": "https://github.com/hopsoft/stimulus_reflex/issues",
+  "repository": "https://github.com:hopsoft/stimulus_reflex",
   "license": "MIT",
   "author": "Nathan Hopkins <natehop@gmail.com>",
-  "main": "./javascript/stimulus_reflex.js",
-  "module": "./javascript/stimulus_reflex.js",
+  "main": "./packages/stimulus_reflex/index.js",
+  "module": "./packages/stimulus_reflex/index.js",
   "scripts": {
-    "postinstall": "node ./javascript/scripts/post_install.js",
-    "prettier-standard:check": "yarn run prettier-standard --check ./javascript/*.js ./javascript/**/*.js",
-    "prettier-standard:format": "yarn run prettier-standard ./javascript/*.js ./javascript/**/*.js",
-    "test": "yarn run mocha --require @babel/register --require esm ./javascript/test"
+    "prepare": "yarn bootstrap",
+    "prettier-standard:check": "lerna run --parallel prettier-standard:check",
+    "prettier-standard:format": "lerna run --parallel prettier-standard:format",
+    "bootstrap": "lerna bootstrap",
+    "test": "lerna run --parallel test",
+    "release": "lerna publish",
+    "release:beta": "lerna publish --npm-tag=beta"
   },
-  "peerDependencies": {
-    "stimulus": ">= 1.1"
-  },
+  "workspaces": [
+    "packages/*",
+    "packages/@stimulus_reflex/*"
+  ],
   "dependencies": {
-    "@rails/actioncable": ">= 6.0",
-    "cable_ready": ">= 4.4"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.6.2",
-    "@babel/preset-env": "^7.6.2",
-    "@babel/register": "^7.6.2",
-    "assert": "^2.0.0",
-    "esm": "^3.2.25",
-    "jsdom": "^16.0.1",
-    "mocha": "^8.0.1",
-    "prettier-standard": "^16.1.0",
-    "stimulus": ">= 1.1"
+    "lerna": "^3.22.1"
   }
 }

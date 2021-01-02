@@ -1,0 +1,32 @@
+{
+  "name": "@stimulus_reflex/polyfills",
+  "version": "3.4.0",
+  "description": "Polyfills to support StimulusReflex in older browsers",
+  "homepage": "https://docs.stimulusreflex.com/",
+  "bugs": "https://github.com/hopsoft/stimulus_reflex/issues",
+  "repository": "https://github.com/hopsoft/stimulus_reflex",
+  "license": "MIT",
+  "author": "Nathan Hopkins <natehop@gmail.com>",
+  "source": "./index.js",
+  "main": "./index.js",
+  "scripts": {
+    "prettier-standard:check": "yarn run prettier-standard --check *.js **/*.js",
+    "prettier-standard:format": "yarn run prettier-standard *.js **/*.js"
+  },
+  "dependencies": {
+    "@cable_ready/polyfills": "4.4.6",
+    "@stimulus/polyfills": ">= 1.1.1",
+    "core-js": "^3.4.0",
+    "formdata-polyfill": "^3.0.20"
+  },
+  "devDependencies": {
+    "prettier-standard": "^16.4.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": [
+    "./index.js",
+    "./polyfills/**/*.js"
+  ]
+}
