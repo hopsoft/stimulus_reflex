@@ -20,6 +20,7 @@ require "stimulus_reflex/broadcasters/broadcaster"
 require "stimulus_reflex/broadcasters/nothing_broadcaster"
 require "stimulus_reflex/broadcasters/page_broadcaster"
 require "stimulus_reflex/broadcasters/selector_broadcaster"
+require "stimulus_reflex/patches/client_socket"
 require "stimulus_reflex/utils/colorize"
 require "stimulus_reflex/logger"
 
