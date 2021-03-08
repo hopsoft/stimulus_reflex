@@ -584,7 +584,14 @@ const serverMessage = event => {
     dispatchLifecycleEvent(subject, reflexElement, controllerElement, reflexId)
 }
 
+const updateCookies = () => {
+  fetch('/stimulus_reflex/update-cookies', {
+    headers: { 'X-Requested-With': 'XMLHttpRequest' }
+  })
+}
+
 document.addEventListener('stimulus-reflex:server-message', serverMessage)
+document.addEventListener('stimulus-reflex:update-cookies', updateCookies)
 document.addEventListener('cable-ready:before-inner-html', beforeDOMUpdate)
 document.addEventListener('cable-ready:before-morph', beforeDOMUpdate)
 document.addEventListener('cable-ready:after-inner-html', afterDOMUpdate)

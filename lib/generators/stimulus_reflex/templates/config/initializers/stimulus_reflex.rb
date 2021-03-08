@@ -10,6 +10,10 @@ StimulusReflex.configure do |config|
 
   # config.parent_channel = "ApplicationCable::Channel"
 
+  # Set the prefix for storing cookie-backed session data in Redis
+
+  # config.session_prefix = "stimulus_reflex:session:"
+
   # Customize server-side Reflex logging format, with optional colorization:
   # Available tokens: session_id, session_id_full, reflex_info, operation, reflex_id, reflex_id_full, mode, selector, operation_counter, connection_id, connection_id_full, timestamp
   # Available colors: red, green, yellow, blue, magenta, cyan, white

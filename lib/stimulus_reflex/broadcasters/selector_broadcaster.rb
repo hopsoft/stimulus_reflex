@@ -37,6 +37,10 @@ module StimulusReflex
         end
       end
 
+      if Rails.application.config.session_store == ActionDispatch::Session::CookieStore # AND if session has changed
+        cable_ready.dispatch_event(name: "stimulus-reflex:update-cookies")
+      end
+
       cable_ready.broadcast
       morphs.clear
     end
