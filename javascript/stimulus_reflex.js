@@ -126,8 +126,7 @@ const register = (controller, options = {}) => {
       let selectors = options['selectors'] || getReflexRoots(reflexElement)
       if (typeof selectors === 'string') selectors = [selectors]
       const resolveLate = options['resolveLate'] || false
-      const datasetAttribute = reflexes.app.schema.reflexDatasetAttribute
-      const dataset = extractElementDataset(reflexElement, datasetAttribute)
+      const dataset = extractElementDataset(reflexElement)
       const xpathController = elementToXPath(controllerElement)
       const xpathElement = elementToXPath(reflexElement)
       const data = {

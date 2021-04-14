@@ -23,7 +23,6 @@ class StimulusReflex::Channel < StimulusReflex.configuration.parent_channel.cons
     reflex_name = reflex_name.camelize
     reflex_name = reflex_name.end_with?("Reflex") ? reflex_name : "#{reflex_name}Reflex"
     arguments = (data["args"] || []).map { |arg| object_with_indifferent_access arg }
-    element = StimulusReflex::Element.new(data)
     permanent_attribute_name = data["permanentAttributeName"]
     form_data = Rack::Utils.parse_nested_query(data["formData"])
     params = form_data.deep_merge(data["params"] || {})
@@ -31,9 +30,10 @@ class StimulusReflex::Channel < StimulusReflex.configuration.parent_channel.cons
     begin
       begin
         reflex_class = reflex_name.constantize.tap { |klass| raise ArgumentError.new("#{reflex_name} is not a StimulusReflex::Reflex") unless is_reflex?(klass) }
-        reflex = reflex_class.new(self,
+        reflex = reflex_class.new(
+          self,
           url: url,
-          element: element,
+          data: data,
           selectors: selectors,
           method_name: method_name,
           params: params,
@@ -43,7 +43,8 @@ class StimulusReflex::Channel < StimulusReflex.configuration.parent_channel.cons
             xpath_element: data["xpathElement"],
             reflex_controller: data["reflexController"],
             permanent_attribute_name: permanent_attribute_name
-          })
+          }
+        )
         delegate_call_to_reflex reflex, method_name, arguments
       rescue => invoke_error
         message = exception_message_with_backtrace(invoke_error)
