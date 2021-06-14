@@ -131,7 +131,7 @@ In this example, we update each anchor's text before invoking the server side Re
 ```markup
 <div data-controller="example">
   <a href="#" data-reflex="Example#masticate">Eat</a>
-  <a href="#" data-reflex="Example#deficate">Poop</a>
+  <a href="#" data-reflex="Example#defecate">Poop</a>
 </div>
 ```
 {% endcode %}
