@@ -156,9 +156,11 @@ Now, let's create the markup for our form, which will submit to the `Post` Refle
 <%= form_with model: @post, data: { reflex: "submit->PostReflex#submit", signed_id: @post.to_sgid.to_s } do |form| %>
 
   <% if @post.errors.any? %>
+    <ul>
     <% @post.errors.full_messages.each do |message| %>
-      <li><%= message %>
+      <li><%= message %></li>
     <% end %>
+    </ul>
   <% end %>
 
   <div>
