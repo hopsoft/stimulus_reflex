@@ -6,6 +6,7 @@
 
 **Closed issues:**
 
+- HAML code with form tag connect controller twice [\#520](https://github.com/stimulusreflex/stimulus_reflex/issues/520)
 - Web Components Breaking In Stimulus Reflex Morph [\#511](https://github.com/stimulusreflex/stimulus_reflex/issues/511)
 
 ## [v3.5.0.pre1](https://github.com/stimulusreflex/stimulus_reflex/tree/v3.5.0.pre1) (2021-06-02)
@@ -367,7 +368,6 @@
 
 **Merged pull requests:**
 
-- fixes and tweaks to client logging subsystem [\#313](https://github.com/stimulusreflex/stimulus_reflex/pull/313) ([leastbad](https://github.com/leastbad))
 - add ready event after setupDeclarativeReflexes [\#312](https://github.com/stimulusreflex/stimulus_reflex/pull/312) ([leastbad](https://github.com/leastbad))
 - Refactor sanity checks on boot [\#311](https://github.com/stimulusreflex/stimulus_reflex/pull/311) ([excid3](https://github.com/excid3))
 
@@ -387,6 +387,7 @@
 
 **Merged pull requests:**
 
+- fixes and tweaks to client logging subsystem [\#313](https://github.com/stimulusreflex/stimulus_reflex/pull/313) ([leastbad](https://github.com/leastbad))
 - Support IE11 msCrypto \(\#308\) [\#310](https://github.com/stimulusreflex/stimulus_reflex/pull/310) ([chooselife22](https://github.com/chooselife22))
 - Print warning and exit if caching is disabled or npm/gem versions are mismatched [\#309](https://github.com/stimulusreflex/stimulus_reflex/pull/309) ([excid3](https://github.com/excid3))
 - ActionCable connectivity events [\#307](https://github.com/stimulusreflex/stimulus_reflex/pull/307) ([leastbad](https://github.com/leastbad))
@@ -515,7 +516,6 @@
 - Revert "Add instructions for pulling the user id out of session storage" [\#239](https://github.com/stimulusreflex/stimulus_reflex/pull/239) ([leastbad](https://github.com/leastbad))
 - Add instructions for pulling the user id out of session storage [\#238](https://github.com/stimulusreflex/stimulus_reflex/pull/238) ([mtomov](https://github.com/mtomov))
 - adds params documentation [\#230](https://github.com/stimulusreflex/stimulus_reflex/pull/230) ([RolandStuder](https://github.com/RolandStuder))
-- Fix calling wrong controller lifecycle methods [\#226](https://github.com/stimulusreflex/stimulus_reflex/pull/226) ([davidalejandroaguilar](https://github.com/davidalejandroaguilar))
 - Allow to pass reflex action names to reflex generator [\#224](https://github.com/stimulusreflex/stimulus_reflex/pull/224) ([marcoroth](https://github.com/marcoroth))
 
 ## [v3.2.3](https://github.com/stimulusreflex/stimulus_reflex/tree/v3.2.3) (2020-06-15)
@@ -555,6 +555,7 @@
 
 **Merged pull requests:**
 
+- Fix calling wrong controller lifecycle methods [\#226](https://github.com/stimulusreflex/stimulus_reflex/pull/226) ([davidalejandroaguilar](https://github.com/davidalejandroaguilar))
 - Always commit session [\#222](https://github.com/stimulusreflex/stimulus_reflex/pull/222) ([hopsoft](https://github.com/hopsoft))
 
 ## [v3.2.2.pre0](https://github.com/stimulusreflex/stimulus_reflex/tree/v3.2.2.pre0) (2020-05-27)
@@ -646,7 +647,6 @@
 
 - Some housekeeping [\#189](https://github.com/stimulusreflex/stimulus_reflex/pull/189) ([hopsoft](https://github.com/hopsoft))
 - Allow to call stimulate without a reflex target [\#188](https://github.com/stimulusreflex/stimulus_reflex/pull/188) ([marcoroth](https://github.com/marcoroth))
-- Remove implicit permanent for text inputs [\#176](https://github.com/stimulusreflex/stimulus_reflex/pull/176) ([hopsoft](https://github.com/hopsoft))
 - Fix bug in super documentation [\#174](https://github.com/stimulusreflex/stimulus_reflex/pull/174) ([silva96](https://github.com/silva96))
 
 ## [v3.1.4](https://github.com/stimulusreflex/stimulus_reflex/tree/v3.1.4) (2020-04-27)
@@ -662,6 +662,7 @@
 - Possible bug when about to perform cableready operations [\#166](https://github.com/stimulusreflex/stimulus_reflex/issues/166)
 - Reflex not binding to ajax loaded content [\#161](https://github.com/stimulusreflex/stimulus_reflex/issues/161)
 - Input field values sometimes remain [\#159](https://github.com/stimulusreflex/stimulus_reflex/issues/159)
+- remove changelog rake task [\#150](https://github.com/stimulusreflex/stimulus_reflex/pull/150) ([andrewmcodes](https://github.com/andrewmcodes))
 
 **Closed issues:**
 
@@ -674,6 +675,7 @@
 **Merged pull requests:**
 
 - prettier-standard: include all js files in the project [\#177](https://github.com/stimulusreflex/stimulus_reflex/pull/177) ([marcoroth](https://github.com/marcoroth))
+- Remove implicit permanent for text inputs [\#176](https://github.com/stimulusreflex/stimulus_reflex/pull/176) ([hopsoft](https://github.com/hopsoft))
 - Support devise authenticated routes [\#172](https://github.com/stimulusreflex/stimulus_reflex/pull/172) ([db0sch](https://github.com/db0sch))
 - setupDeclarativeReflexes export with UJS support [\#169](https://github.com/stimulusreflex/stimulus_reflex/pull/169) ([leastbad](https://github.com/leastbad))
 - Fix compilation issue [\#168](https://github.com/stimulusreflex/stimulus_reflex/pull/168) ([jonathan-s](https://github.com/jonathan-s))
@@ -710,7 +712,6 @@
 **Fixed bugs:**
 
 - Cannot read property 'removeEventListener' of undefined after updating to 3.1.0 [\#151](https://github.com/stimulusreflex/stimulus_reflex/issues/151)
-- remove changelog rake task [\#150](https://github.com/stimulusreflex/stimulus_reflex/pull/150) ([andrewmcodes](https://github.com/andrewmcodes))
 
 **Closed issues:**
 
@@ -792,10 +793,6 @@
 
 [Full Changelog](https://github.com/stimulusreflex/stimulus_reflex/compare/v2.2.0...v2.2.1)
 
-**Fixed bugs:**
-
-- Cleanup and fixes around lifecycle dispatch [\#121](https://github.com/stimulusreflex/stimulus_reflex/pull/121) ([hopsoft](https://github.com/hopsoft))
-
 ## [v2.2.0](https://github.com/stimulusreflex/stimulus_reflex/tree/v2.2.0) (2020-02-28)
 
 [Full Changelog](https://github.com/stimulusreflex/stimulus_reflex/compare/v2.1.9...v2.2.0)
@@ -863,6 +860,7 @@
 
 **Fixed bugs:**
 
+- Cleanup and fixes around lifecycle dispatch [\#121](https://github.com/stimulusreflex/stimulus_reflex/pull/121) ([hopsoft](https://github.com/hopsoft))
 - Use application.js as fallback file path [\#82](https://github.com/stimulusreflex/stimulus_reflex/pull/82) ([julianrubisch](https://github.com/julianrubisch))
 
 **Closed issues:**
