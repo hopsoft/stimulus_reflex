@@ -19,6 +19,10 @@ bundle exec rails stimulus_reflex:install
 StimulusReflex requires Redis to be [installed and running](https://redis.io/topics/quickstart).
 {% endhint %}
 
+{% hint style="danger" %}
+For now, we recommend that you use **Webpacker 5.4.x**, since the 6.0 branch is still in beta and changes how things are set up.
+{% endhint %}
+
 And that's it! You can start using StimulusReflex in your application with the _development_ environment. You'll need to keep reading to set up [test](../appendices/testing.md#test-environment-setup) and [production](../appendices/deployment.md).
 
 {% page-ref page="quickstart.md" %}
@@ -42,6 +46,10 @@ bundle exec rails webpacker:install:stimulus
 bundle add stimulus_reflex
 bundle exec rails generate stimulus_reflex:initializer
 ```
+
+{% hint style="danger" %}
+For now, we recommend that you use **Webpacker 5.4.x**, since the 6.0 branch is still in beta and changes how things are set up.
+{% endhint %}
 
 {% hint style="info" %}
 StimulusReflex happily supports both Stimulus v1.1 and v2.
