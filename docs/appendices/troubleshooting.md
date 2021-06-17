@@ -541,7 +541,7 @@ If your `data-reflex-permanent` isn't being respected, try adding a unique `id` 
 {% endhint %}
 
 {% hint style="info" %}
-If you're supporting an older application that is using Webpacker v3, we have had some reports of issues. Is it possible to upgrade to v4?
+StimulusReflex works best with Webpacker v5.4.
 {% endhint %}
 
 {% hint style="info" %}
