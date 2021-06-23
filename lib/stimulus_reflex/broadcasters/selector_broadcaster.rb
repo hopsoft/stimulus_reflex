@@ -2,23 +2,17 @@
 
 module StimulusReflex
   class SelectorBroadcaster < Broadcaster
-    include CableReady::Identifiable
-
     def broadcast(_, data = {})
       morphs.each do |morph|
         selectors, html = morph
-        updates = selectors.is_a?(Hash) ? selectors : {selectors => html}
-        updates.each do |key, value|
-          html = reflex.render(key) if key.is_a?(ActiveRecord::Base) && value.nil?
-          html = reflex.render_collection(key) if key.is_a?(ActiveRecord::Relation) && value.nil?
-          html ||= value
-          fragment = Nokogiri::HTML.fragment(html.to_s)
-          selector = key.is_a?(ActiveRecord::Base) || key.is_a?(ActiveRecord::Relation) ? dom_id(key) : key.to_s
-          match = fragment.at_css(selector)
+        updates = create_update_collection(selectors, html)
+        updates.each do |update|
+          fragment = Nokogiri::HTML.fragment(update.html.to_s)
+          match = fragment.at_css(update.selector)
           if match.present?
-            operations << [selector, :morph]
+            operations << [update.selector, :morph]
             cable_ready.morph(
-              selector: selector,
+              selector: update.selector,
               html: match.inner_html(save_with: Broadcaster::DEFAULT_HTML_WITHOUT_FORMAT),
               payload: payload,
               children_only: true,
@@ -28,9 +22,9 @@ module StimulusReflex
               })
             )
           else
-            operations << [selector, :inner_html]
+            operations << [update.selector, :inner_html]
             cable_ready.inner_html(
-              selector: selector,
+              selector: update.selector,
               html: fragment.to_html,
               payload: payload,
               stimulus_reflex: data.merge({
@@ -64,5 +58,26 @@ module StimulusReflex
     def to_s
       "Selector"
     end
+
+    private
+
+    def create_update_collection(selectors, html)
+      updates = selectors.is_a?(Hash) ? selectors : {selectors => html}
+      updates.map do |key, value|
+        Update.new(key, value, reflex)
+      end
+    end
+
+    StimulusReflex::SelectorBroadcaster::Update = Struct.new(:key, :value, :reflex) do
+      def selector
+        key.is_a?(ActiveRecord::Base) || key.is_a?(ActiveRecord::Relation) ? dom_id(key) : key.to_s
+      end
+
+      def html
+        html = reflex.render(key) if key.is_a?(ActiveRecord::Base) && value.nil?
+        html = reflex.render_collection(key) if key.is_a?(ActiveRecord::Relation) && value.nil?
+        html || value
+      end
+    end.include(CableReady::Identifiable)
   end
 end
