@@ -42,13 +42,17 @@ class TestModel
   def is_a?(klass)
     klass == ActiveRecord::Base
   end
+
+  def to_gid_param
+    "xxxyyyzzz"
+  end
 end
 
 module ActionCable
   module Channel
     class ConnectionStub
       def connection_identifier
-        connection_gid identifiers.map { |id| instance_variable_get("@#{id}") }.compact
+        connection_gid identifiers.map { |id| send(id.to_sym) if id }.compact
       end
 
       def connection_gid(ids)
