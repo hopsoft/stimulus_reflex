@@ -29,6 +29,10 @@ class StimulusReflex::Element < OpenStruct
     @dataset ||= OpenStruct.new(build_underscored(data_attrs))
   end
 
+  def to_dom_id
+    "##{id}"
+  end
+
   alias_method :data_attributes, :dataset
 
   private

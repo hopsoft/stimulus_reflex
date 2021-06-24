@@ -70,7 +70,7 @@ module StimulusReflex
 
     StimulusReflex::SelectorBroadcaster::Update = Struct.new(:key, :value, :reflex) do
       def selector
-        key.is_a?(ActiveRecord::Base) || key.is_a?(ActiveRecord::Relation) ? dom_id(key) : key.to_s
+        identifiable?(key) ? dom_id(key) : key.to_s
       end
 
       def html
