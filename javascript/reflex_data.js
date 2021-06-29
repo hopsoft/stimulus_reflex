@@ -83,6 +83,13 @@ export default class ReflexData {
     )
   }
 
+  get formSelector () {
+    return (
+      this.options['formSelector'] ||
+      this.reflexElement.dataset.reflexFormSelector
+    )
+  }
+
   valueOf () {
     return {
       attrs: this.attrs,
@@ -94,6 +101,7 @@ export default class ReflexData {
       xpathElement: this.xpathElement,
       inner_html: this.innerHTML,
       text_content: this.textContent,
+      formSelector: this.formSelector,
       reflexController: this.reflexController,
       permanentAttributeName: this.permanentAttributeName,
       target: this.target,

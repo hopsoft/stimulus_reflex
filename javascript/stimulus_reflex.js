@@ -189,7 +189,9 @@ const register = (controller, options = {}) => {
             options['serializeForm'] = true
         }
 
-        const form = reflexElement.closest('form')
+        const form =
+          document.querySelector(reflexData.formSelector) ||
+          reflexElement.closest('form')
 
         if (Deprecate.enabled && options['serializeForm'] === undefined && form)
           console.warn(
