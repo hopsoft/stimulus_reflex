@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+# The ActionCable logger is REALLY noisy, and might even impact performance.
+# Uncomment the line below to silence the ActionCable logger.
+
+# ActionCable.server.config.logger = Logger.new(nil)
+
 StimulusReflex.configure do |config|
   # Enable/disable exiting / warning when the sanity checks fail options:
   # `:exit` or `:warn` or `:ignore`
@@ -10,6 +15,11 @@ StimulusReflex.configure do |config|
   # `:exit` or `:warn` or `:ignore`
 
   # config.on_new_version_available = :ignore
+
+  # Enable/disable exiting / warning when there is no default URLs specified in environment config
+  # `:warn` or `:ignore`
+
+  # config.on_missing_default_urls = :warn
 
   # Override the parent class that the StimulusReflex ActionCable channel inherits from
 
