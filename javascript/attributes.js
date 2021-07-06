@@ -1,5 +1,5 @@
-import reflexes from './reflexes'
 import { elementToXPath, XPathToArray } from './utils'
+import Schema from './schema'
 import Debug from './debug'
 import Deprecate from './deprecate'
 
@@ -29,7 +29,7 @@ const collectCheckedOptions = element => {
 //
 //   attributeValue(['', 'one', null, 'two', 'three ']) // 'one two three'
 //
-export const attributeValue = (values = []) => {
+const attributeValue = (values = []) => {
   const value = values
     .filter(v => v && String(v).length)
     .map(v => v.trim())
@@ -42,7 +42,7 @@ export const attributeValue = (values = []) => {
 //
 //   attributeValues('one two three ') // ['one', 'two', 'three']
 //
-export const attributeValues = value => {
+const attributeValues = value => {
   if (!value) return []
   if (!value.length) return []
   return value.split(' ').filter(v => v.trim().length)
@@ -50,7 +50,7 @@ export const attributeValues = value => {
 
 // Extracts attributes from a DOM element.
 //
-export const extractElementAttributes = element => {
+const extractElementAttributes = element => {
   let attrs = Array.from(element.attributes).reduce((memo, attr) => {
     memo[attr.name] = attr.value
     return memo
@@ -130,10 +130,9 @@ const getElementsFromTokens = (element, tokens) => {
 
 // Extracts the dataset of an element and combines it with the data attributes from all specified tokens
 //
-export const extractElementDataset = element => {
-  const dataset = element.attributes[reflexes.app.schema.reflexDatasetAttribute]
-  const allDataset =
-    element.attributes[reflexes.app.schema.reflexDatasetAllAttribute]
+const extractElementDataset = element => {
+  const dataset = element.attributes[Schema.reflexDataset]
+  const allDataset = element.attributes[Schema.reflexDatasetAll]
 
   const tokens = (dataset && dataset.value.split(' ')) || []
   const allTokens = (allDataset && allDataset.value.split(' ')) || []
@@ -174,7 +173,7 @@ export const extractElementDataset = element => {
 
 // Extracts all data attributes from a DOM element.
 //
-export const extractDataAttributes = element => {
+const extractDataAttributes = element => {
   let attrs = {}
 
   if (element && element.attributes) {
@@ -186,4 +185,12 @@ export const extractDataAttributes = element => {
   }
 
   return attrs
+}
+
+export {
+  attributeValue,
+  attributeValues,
+  extractElementAttributes,
+  extractElementDataset,
+  extractDataAttributes
 }

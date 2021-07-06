@@ -1,13 +1,13 @@
 import reflexes from './reflexes'
 
-function request (
+const request = (
   reflexId,
   target,
   args,
   controller,
   element,
   controllerElement
-) {
+) => {
   reflexes[reflexId].timestamp = new Date()
   console.log(`\u2191 stimulus \u2191 ${target}`, {
     reflexId,
@@ -18,7 +18,7 @@ function request (
   })
 }
 
-function success (event) {
+const success = event => {
   const { detail } = event || {}
   const { selector, payload } = detail || {}
   const { reflexId, target, morph, serverMessage } = detail.stimulusReflex || {}
@@ -43,7 +43,7 @@ function success (event) {
   )
 }
 
-function error (event) {
+const error = event => {
   const { detail } = event || {}
   const { reflexId, target, serverMessage } = detail.stimulusReflex || {}
   const reflex = reflexes[reflexId]

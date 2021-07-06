@@ -13,10 +13,9 @@ import reflexes from './reflexes'
 //   * finalize
 //
 // - reflexElement - the element that triggered the Reflex (not necessarily the StimulusReflex Controller Element)
-//
 // - controllerElement - the element holding the StimulusReflex Controller
-//
 // - reflexId - the UUIDv4 which uniquely identifies the Reflex
+// - payload - the optional "return value" from the Reflex method
 //
 const invokeLifecycleMethod = (
   stage,
@@ -210,7 +209,7 @@ document.addEventListener(
 //
 // - reflexId - the UUIDv4 which uniquely identifies the Reflex
 //
-export const dispatchLifecycleEvent = (
+const dispatchLifecycleEvent = (
   stage,
   reflexElement,
   controllerElement,
@@ -257,3 +256,5 @@ export const dispatchLifecycleEvent = (
   )
   if (window.jQuery) window.jQuery(controllerElement).trigger(event, detail)
 }
+
+export { dispatchLifecycleEvent }

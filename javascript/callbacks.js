@@ -5,7 +5,7 @@ import { dispatchLifecycleEvent } from './lifecycle'
 import Log from './log'
 import Debug from './debug'
 
-export const beforeDOMUpdate = event => {
+const beforeDOMUpdate = event => {
   const { stimulusReflex } = event.detail || {}
   if (!stimulusReflex) return
   const { reflexId, xpathElement, xpathController } = stimulusReflex
@@ -40,7 +40,7 @@ export const beforeDOMUpdate = event => {
   )
 }
 
-export const afterDOMUpdate = event => {
+const afterDOMUpdate = event => {
   const { stimulusReflex } = event.detail || {}
   if (!stimulusReflex) return
   const { reflexId, xpathElement, xpathController } = stimulusReflex
@@ -79,7 +79,7 @@ export const afterDOMUpdate = event => {
   CableReady.perform(reflex.piggybackOperations)
 }
 
-export const serverMessage = event => {
+const serverMessage = event => {
   const { reflexId, serverMessage, xpathController, xpathElement } =
     event.detail.stimulusReflex || {}
   const { subject, body } = serverMessage
@@ -118,3 +118,5 @@ export const serverMessage = event => {
 
   CableReady.perform(reflex.piggybackOperations)
 }
+
+export { beforeDOMUpdate, afterDOMUpdate, serverMessage }

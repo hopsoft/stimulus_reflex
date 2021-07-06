@@ -1,7 +1,7 @@
 // uuid4 function taken from stackoverflow
 // https://stackoverflow.com/a/2117523/554903
 
-export const uuidv4 = () => {
+const uuidv4 = () => {
   const crypto = window.crypto || window.msCrypto
   return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
     (
@@ -11,7 +11,7 @@ export const uuidv4 = () => {
   )
 }
 
-export const serializeForm = (form, options = {}) => {
+const serializeForm = (form, options = {}) => {
   if (!form) return ''
 
   const w = options.w || window
@@ -39,7 +39,7 @@ export const serializeForm = (form, options = {}) => {
   return Array.from(new Set(data)).join('&')
 }
 
-export const camelize = (value, uppercaseFirstLetter = true) => {
+const camelize = (value, uppercaseFirstLetter = true) => {
   if (typeof value !== 'string') return ''
   value = value
     .replace(/[\s_](.)/g, $1 => $1.toUpperCase())
@@ -52,7 +52,7 @@ export const camelize = (value, uppercaseFirstLetter = true) => {
   return value
 }
 
-export const debounce = (callback, delay = 250) => {
+const debounce = (callback, delay = 250) => {
   let timeoutId
   return (...args) => {
     clearTimeout(timeoutId)
@@ -63,13 +63,13 @@ export const debounce = (callback, delay = 250) => {
   }
 }
 
-export const extractReflexName = reflexString => {
+const extractReflexName = reflexString => {
   const match = reflexString.match(/(?:.*->)?(.*?)(?:Reflex)?#/)
 
   return match ? match[1] : ''
 }
 
-export const emitEvent = (event, detail) => {
+const emitEvent = (event, detail) => {
   document.dispatchEvent(
     new CustomEvent(event, {
       bubbles: true,
@@ -81,7 +81,7 @@ export const emitEvent = (event, detail) => {
 }
 
 // construct a valid xPath for an element in the DOM
-export const elementToXPath = element => {
+const elementToXPath = element => {
   if (element.id !== '') return "//*[@id='" + element.id + "']"
   if (element === document.body) return '/html/body'
 
@@ -103,7 +103,7 @@ export const elementToXPath = element => {
   }
 }
 
-export const XPathToElement = xpath => {
+const XPathToElement = xpath => {
   return document.evaluate(
     xpath,
     document,
@@ -113,7 +113,7 @@ export const XPathToElement = xpath => {
   ).singleNodeValue
 }
 
-export const XPathToArray = (xpath, reverse = false) => {
+const XPathToArray = (xpath, reverse = false) => {
   const snapshotList = document.evaluate(
     xpath,
     document,
@@ -129,4 +129,16 @@ export const XPathToArray = (xpath, reverse = false) => {
   }
 
   return reverse ? snapshots.reverse() : snapshots
+}
+
+export {
+  uuidv4,
+  serializeForm,
+  camelize,
+  debounce,
+  extractReflexName,
+  emitEvent,
+  elementToXPath,
+  XPathToElement,
+  XPathToArray
 }
