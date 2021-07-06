@@ -178,4 +178,62 @@ class StimulusReflex::ElementTest < ActiveSupport::TestCase
     assert_equal "19", overlapping_keys_element.dataset.duplicate_value
     assert_equal ["20", "20", "21", "22"], overlapping_keys_element.dataset.duplicate_values
   end
+
+  test "should return true for truthy data attributes" do
+    data = {
+      "dataset" => {
+        "dataset" => {
+          "data-short" => "t",
+          "data-long" => "true",
+          "data-num" => "1",
+          "data-empty" => ""
+        }
+      }
+    }
+
+    element_with_truthy_attributes = StimulusReflex::Element.new(data)
+
+    assert element_with_truthy_attributes.truthy?[:short]
+    assert element_with_truthy_attributes.truthy?[:long]
+    assert element_with_truthy_attributes.truthy?[:num]
+    assert element_with_truthy_attributes.truthy?[:empty]
+  end
+
+  test "should return false for falsey data attributes" do
+    data = {
+      "dataset" => {
+        "dataset" => {
+          "data-short" => "f",
+          "data-long" => "false",
+          "data-num" => "0"
+        }
+      }
+    }
+
+    element_with_falsey_attributes = StimulusReflex::Element.new(data)
+
+    refute element_with_falsey_attributes.truthy?[:short]
+    refute element_with_falsey_attributes.truthy?[:long]
+    refute element_with_falsey_attributes.truthy?[:num]
+  end
+
+  test "should return numeric values" do
+    data = {
+      "dataset" => {
+        "dataset" => {
+          "data-int" => "123",
+          "data-float" => "123.456",
+          "data-string" => "asdf"
+        }
+      }
+    }
+
+    element_with_numeric_attributes = StimulusReflex::Element.new(data)
+
+    assert_equal 123.0, element_with_numeric_attributes.numeric[:int]
+    assert_equal 123.456, element_with_numeric_attributes.numeric[:float]
+    assert_raises do
+      element_with_numeric_attributes.numeric[:string]
+    end
+  end
 end

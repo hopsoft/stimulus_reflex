@@ -21,6 +21,14 @@ class StimulusReflex::Element < OpenStruct
     @unsigned ||= ->(accessor) { GlobalID::Locator.locate(dataset[accessor]) }
   end
 
+  def truthy?
+    @truthy ||= ->(accessor) { ActiveModel::Type::Boolean.new.cast(dataset[accessor]) || dataset[accessor].blank? }
+  end
+
+  def numeric
+    @numeric ||= ->(accessor) { Float(dataset[accessor]) }
+  end
+
   def attributes
     @attributes ||= OpenStruct.new(build_underscored(attrs))
   end
