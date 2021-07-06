@@ -5,6 +5,10 @@ class StimulusReflex::ReflexData
     @data = data
   end
 
+  def connection_identifier
+    data["connectionIdentifier"]
+  end
+
   def reflex_name
     reflex_name = target.split("#").first
     reflex_name = reflex_name.camelize

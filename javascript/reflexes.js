@@ -4,6 +4,7 @@ import { dispatchLifecycleEvent } from './lifecycle'
 import { XPathToElement, debounce, emitEvent } from './utils'
 import { allReflexControllers, findControllerByReflexName } from './controllers'
 import { attributeValue, attributeValues } from './attributes'
+import connectionIdentifier from './connection_identifier'
 import isolationMode from './isolation_mode'
 
 const reflexes = {}
@@ -11,6 +12,7 @@ const reflexes = {}
 export default reflexes
 
 export const received = data => {
+  if (data.identifier) connectionIdentifier.set(data.identifier)
   if (!data.cableReady) return
 
   let reflexOperations = {}

@@ -1,8 +1,8 @@
 import { Controller } from 'stimulus'
 import { defaultSchema } from './schema'
 import { dispatchLifecycleEvent } from './lifecycle'
-import { uuidv4, serializeForm } from './utils'
-import { elementToXPath } from './utils'
+import { uuidv4, serializeForm, elementToXPath } from './utils'
+import { identifier } from './connection_identifier'
 import { beforeDOMUpdate, afterDOMUpdate, serverMessage } from './callbacks'
 import {
   registerReflex,
@@ -151,6 +151,7 @@ const register = (controller, options = {}) => {
       const dataset = extractElementDataset(reflexElement)
       const xpathController = elementToXPath(controllerElement)
       const xpathElement = elementToXPath(reflexElement)
+      const connectionIdentifier = identifier()
       const data = {
         target,
         args,
@@ -163,6 +164,7 @@ const register = (controller, options = {}) => {
         resolveLate,
         xpathController,
         xpathElement,
+        connectionIdentifier,
         reflexController: this.identifier,
         permanentAttributeName: reflexes.app.schema.reflexPermanentAttribute
       }

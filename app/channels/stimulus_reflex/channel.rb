@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class StimulusReflex::Channel < StimulusReflex.configuration.parent_channel.constantize
+  class IdentityError < RuntimeError; end
+
   attr_reader :reflex_data
 
   def stream_name
@@ -9,6 +11,7 @@ class StimulusReflex::Channel < StimulusReflex.configuration.parent_channel.cons
 
   def subscribed
     super
+    transmit identifier: connection.connection_identifier
     stream_from stream_name
   end
 
@@ -17,6 +20,7 @@ class StimulusReflex::Channel < StimulusReflex.configuration.parent_channel.cons
     begin
       begin
         reflex = StimulusReflex::ReflexFactory.create_reflex_from_data(self, @reflex_data)
+        validate_connection_identifier reflex
         delegate_call_to_reflex reflex
       rescue => exception
         error = exception_with_backtrace(exception)
@@ -75,6 +79,12 @@ class StimulusReflex::Channel < StimulusReflex.configuration.parent_channel.cons
   end
 
   private
+
+  def validate_connection_identifier(reflex)
+    if reflex_data.connection_identifier != connection.connection_identifier
+      raise IdentityError.new("connection identifier does not match")
+    end
+  end
 
   def delegate_call_to_reflex(reflex)
     method_name = reflex_data.method_name
